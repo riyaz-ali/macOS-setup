@@ -170,6 +170,23 @@ if [ ! -d ~/.tmux ]; then
   git clone https://github.com/gpakosz/.tmux.git ~/.tmux
   ln -s -f ~/.tmux/.tmux.conf ~
   cp ~/.tmux/.tmux.conf.local ~
+
+# customize tmux settings
+cat >> ~/.tmux.conf.local <<EOF
+
+# custom key bindings
+# use options key + cursor to navigate
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+  
+# use <prefix> + - to create horizontal pane and <prefix> + \ to create vertical pane
+bind-key - split-window -v  -c '#{pane_current_path}'
+bind-key \ split-window -h  -c '#{pane_current_path}'
+
+EOF
+
   fancy_echo "Customise the config by making change to ~/.tmux.conf.local - see https://github.com/gpakosz/.tmux"
 else
   fancy_echo "Directory ~/.tmux exists.. skipping installation ..."
