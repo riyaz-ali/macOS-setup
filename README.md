@@ -2,6 +2,32 @@
 
 A shell script and several of `dotfiles` to set up a macOS laptop for web and mobile development.
 
+## Installation
+
+First, download the script
+
+```shell
+curl -O https://raw.githubusercontent.com/riyaz-ali/macOS-setup/master/mac.sh
+```
+
+Review the script (avoid running scripts you haven't read!)
+
+```shell
+less mac
+```
+
+Execute the downloaded script
+
+```shell
+sh mac.sh 2>&1 | tee ~/install.log
+```
+
+Optionally, review the log
+
+```shell
+less ~/install.log
+```
+
 ## What's in it?
 
 - First class [**`zsh`**](http://zsh.sourceforge.net/) support
