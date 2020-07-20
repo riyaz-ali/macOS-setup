@@ -1,12 +1,9 @@
 #!/bin/sh
 
-# _ __ ___   __ _  ___ / _ \/ ___|
+#  _ __ ___   __ _  ___ / _ \/ ___|
 # | '_ ` _ \ / _` |/ __| | | \___ \
 # | | | | | | (_| | (__| |_| |___) |
-# |_| |_| |_|\__,_|\___|\___/|____/
-#
-# Setup script for macOS 
-# - @riyaz-ali
+# |_| |_| |_|\__,_|\___|\___/|____/  - Setup script for macOS by @riyaz-ali
 
 
 # ---------- - - - - -
@@ -118,7 +115,6 @@ fancy_echo "Updating Homebrew formulae ..."
 brew bundle --file=- <<EOF
 # additional formulae sources
 tap "homebrew/services"
-tap "caskroom/cask"
 
 # Unix - common unix tools and utilities
 brew "automake"
@@ -128,16 +124,13 @@ brew "curl"
 brew "fzf"
 brew "findutils"
 brew "git"
-brew "gnupg2"
 brew "gnu-sed"
 brew "jq"
 brew "mkcert"
 brew "moreutils"
 brew "openssl"
 brew "openssh"
-brew "reattach-to-user-namespace"
 brew "telnet"
-brew "tmux"
 brew "vim"
 brew "watchman"
 brew "zsh"
@@ -145,17 +138,14 @@ brew "zsh"
 # Programming language prerequisites and package managers
 brew "libyaml" # should come after openssl
 brew "coreutils"
-brew "yarn"
+brew "github/gh/gh"
 
 # Graphical tools
-cask "alacritty"
+cask "kitty"
 cask "balenaetcher"
-cask "postgres"
 cask "motrix"
-cask "vlc"
 cask "visual-studio-code"
 cask "google-chrome"
-cask "google-backup-and-sync"
 
 EOF
 
@@ -163,34 +153,6 @@ EOF
 fancy_echo "Installing oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended || true  # ignore return code for oh-my-zsh
 # oh-my-zsh installation fails if we already have an existing installation
-
-# The best tmux config that just works! - https://github.com/gpakosz/.tmux
-if [ ! -d ~/.tmux ]; then
-  fancy_echo "Adding tmux config ..."
-  git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-  ln -s -f ~/.tmux/.tmux.conf ~
-  cp ~/.tmux/.tmux.conf.local ~
-
-# customize tmux settings
-cat >> ~/.tmux.conf.local <<EOF
-
-# custom key bindings
-# use options key + cursor to navigate
-bind -n M-Left select-pane -L
-bind -n M-Right select-pane -R
-bind -n M-Up select-pane -U
-bind -n M-Down select-pane -D
-  
-# use <prefix> + - to create horizontal pane and <prefix> + \ to create vertical pane
-bind-key - split-window -v  -c '#{pane_current_path}'
-bind-key \ split-window -h  -c '#{pane_current_path}'
-
-EOF
-
-  fancy_echo "Customise the config by making change to ~/.tmux.conf.local - see https://github.com/gpakosz/.tmux"
-else
-  fancy_echo "Directory ~/.tmux exists.. skipping installation ..."
-fi
 
 # ---------- - - - - -
 # Language tools ...
