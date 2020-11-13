@@ -115,6 +115,7 @@ fancy_echo "Updating Homebrew formulae ..."
 brew bundle --file=- <<EOF
 # additional formulae sources
 tap "homebrew/services"
+tap "filippo.io/yubikey-agent" "https://filippo.io/yubikey-agent"
 
 # Unix - common unix tools and utilities
 brew "automake"
@@ -124,6 +125,7 @@ brew "curl"
 brew "fzf"
 brew "findutils"
 brew "git"
+brew "git-delta"
 brew "gnu-sed"
 brew "jq"
 brew "mkcert"
@@ -139,13 +141,16 @@ brew "zsh"
 brew "libyaml" # should come after openssl
 brew "coreutils"
 brew "github/gh/gh"
+brew "hugo"
+brew "yubikey-agent"
 
 # Graphical tools
-cask "kitty"
+cask "alacritty"
 cask "balenaetcher"
 cask "motrix"
 cask "visual-studio-code"
 cask "google-chrome"
+cask "jetbrains-toolbox"
 
 EOF
 
@@ -169,5 +174,9 @@ append_to_zshrc 'eval "$(rbenv init -)"'
 # Java environment manager (jenv)
 fancy_echo "Installing Java Environment ..."
 brew install jenv
+
+# Python environment manager (pyenv)
+fancy_echo "Installing Python Environment ..."
+brew install pyenv
 
 # ---------- - - - - -
